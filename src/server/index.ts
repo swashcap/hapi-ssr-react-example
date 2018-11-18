@@ -10,6 +10,8 @@ import { toStream } from "./utils";
 
 const port = process.env.PORT || 3000;
 
+const INITIAL_PROPS = { numericInputValue: 2 };
+
 const RESPONSE_BEGINNING = `<html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -22,6 +24,10 @@ const RESPONSE_BEGINNING = `<html lang="en">
 `;
 
 const RESPONSE_ENDING = `
+      <script>
+        __INITIAL_PROPS__ = ${JSON.stringify(INITIAL_PROPS)}
+      </script>
+      <script async src="bundle.js"></script>
     </body>
   </html>`;
 
@@ -61,7 +67,7 @@ const getServer = async () => {
       combinedStream.append(toStream(RESPONSE_BEGINNING));
       combinedStream.append(
         ReactDOMServer.renderToNodeStream(
-          React.createElement(App, { numericInputValue: 2 })
+          React.createElement(App, INITIAL_PROPS)
         )
       );
       combinedStream.append(toStream(RESPONSE_ENDING));

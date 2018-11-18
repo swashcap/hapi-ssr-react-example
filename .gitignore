@@ -77,3 +77,4 @@ typings/
 
 # Build output
 build
+public/bundle.js

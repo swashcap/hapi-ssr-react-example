@@ -27,7 +27,8 @@ export default ({ numericInputValue, ...rest }: Props) => (
     </main>
     <footer role="contentinfo">
       <small>
-        Source on <a href="https://github.com/swashcap/hapi-ssr-react-example">GitHub</a>.
+        Source on{" "}
+        <a href="https://github.com/swashcap/hapi-ssr-react-example">GitHub</a>.
       </small>
     </footer>
   </div>
