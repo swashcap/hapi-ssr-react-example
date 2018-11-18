@@ -50,7 +50,7 @@ export default class NumericInput extends React.Component<Props, State> {
         <input id="numeric-input-1" type="number" value={value} />
         <button
           aria-label="Increase by 1"
-          onClick={this.handleDecrementPress}
+          onClick={this.handleIncrementPress}
           title="Increase"
           type="button"
         >
