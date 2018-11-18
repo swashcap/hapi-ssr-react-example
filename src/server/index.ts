@@ -1,4 +1,6 @@
 import hapi from "hapi";
+import inert from "inert";
+import path from "path";
 import CombinedStream from "combined-stream2";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
@@ -23,30 +25,53 @@ const RESPONSE_ENDING = `
     </body>
   </html>`;
 
-const server = new hapi.Server({
-  debug: {
-    log: ["*"],
-    request: ["*"]
-  },
-  host: "localhost",
-  port
-});
+// can't use top-level async/await
+const getServer = async () => {
+  const server = new hapi.Server({
+    debug: {
+      log: ["*"],
+      request: ["*"]
+    },
+    host: "localhost",
+    port,
+    routes: {
+      files: {
+        relativeTo: path.resolve(__dirname, "../../public")
+      }
+    }
+  });
 
-server.route({
-  handler() {
-    const combinedStream = CombinedStream.create();
+  await server.register(inert);
 
-    combinedStream.append(toStream(RESPONSE_BEGINNING));
-    combinedStream.append(
-      ReactDOMServer.renderToNodeStream(React.createElement(App))
-    );
-    combinedStream.append(toStream(RESPONSE_ENDING));
+  server.route({
+    method: "GET",
+    path: "/{param*}",
+    handler: {
+      directory: {
+        path: ".",
+        redirectToSlash: true,
+        index: false
+      }
+    }
+  });
+  server.route({
+    handler() {
+      const combinedStream = CombinedStream.create();
 
-    return combinedStream;
-  },
-  method: "GET",
-  path: "/"
-});
+      combinedStream.append(toStream(RESPONSE_BEGINNING));
+      combinedStream.append(
+        ReactDOMServer.renderToNodeStream(React.createElement(App))
+      );
+      combinedStream.append(toStream(RESPONSE_ENDING));
+
+      return combinedStream;
+    },
+    method: "GET",
+    path: "/"
+  });
+
+  return server;
+};
 
 process.on("unhandledRejection", error => {
   console.error(error);
@@ -54,9 +79,10 @@ process.on("unhandledRejection", error => {
 });
 
 if (require.main === module) {
-  server.start().then(() => {
+  getServer().then(async server => {
+    await server.start();
     server.log(`Server running at ${server.info.uri}`);
   });
 }
 
-export default server;
+export default getServer;
