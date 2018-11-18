@@ -1,6 +1,6 @@
 # Hapi SSR React Example
 
-An example server with [Hapi](https://hapijs.com/) and React server-side rendering.
+An example server with [Hapi](https://hapijs.com/) and [React server-side rendering](https://reactjs.org/docs/react-dom-server.html) with [React client-side hydration](https://reactjs.org/docs/react-dom.html#hydrate).
 
 ## Running
 
