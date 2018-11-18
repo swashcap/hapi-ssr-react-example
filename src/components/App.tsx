@@ -1,8 +1,8 @@
 import * as React from "react";
 
 export default (props: React.HTMLAttributes<HTMLDivElement>) => (
-  <div>
-    <header>
+  <div className="app" {...props}>
+    <header role="banner">
       <h1>
         Hapi <abbr title="Server Side Render">SSR</abbr> React Example
       </h1>

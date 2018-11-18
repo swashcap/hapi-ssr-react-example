@@ -10,13 +10,13 @@ import { toStream } from "./utils";
 
 const port = process.env.PORT || 3000;
 
-const RESPONSE_BEGINNING = `
-<html lang="en">
+const RESPONSE_BEGINNING = `<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Hapi SSR React Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="styles.css">
   </head>
     <body>
 `;

@@ -1,0 +1,45 @@
+html {
+  background: whitesmoke;
+  color: darkslategray;
+  font-family: "Avenir Next", Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+}
+body {
+  margin: 0;
+}
+a {
+  color: dodgerblue;
+}
+a:hover,
+a:focus,
+a:active {
+  color: darkblue;
+}
+
+.app {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-height: 100vh;
+  max-width: 30em;
+  padding: 0 1em;
+}
+
+header[role=banner],
+footer[role=contentinfo] {
+  padding: 1em 0;
+  text-align: center;
+}
+
+.app h1 {
+  font-size: 200%;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.app main {
+  flex: 2;
+}
+
