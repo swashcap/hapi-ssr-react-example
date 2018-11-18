@@ -1,3 +1,8 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 html {
   background: whitesmoke;
   color: darkslategray;
@@ -17,7 +22,6 @@ a:active {
 }
 
 .app {
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -43,3 +47,51 @@ footer[role=contentinfo] {
   flex: 2;
 }
 
+/* Numeric Input */
+.numeric-input label {
+  display: block;
+  font-weight: 700;
+  padding: 0.5em 0;
+}
+.numeric-input button {
+  background: dodgerblue;
+  border: thin solid transparent;
+  border-radius: 100%;
+  color: white;
+  cursor: pointer;
+  font-size: 125%;
+  font-weight: 700;
+  height: 1.5em;
+  line-height: 1.5;
+  padding: 0;
+  width: 1.5em;
+  text-align: center;
+  vertical-align: top;
+}
+.numeric-input button span {
+  display: inline-block;
+  line-height: 1;
+}
+.numeric-input button:hover,
+.numeric-input button:focus,
+.numeric-input button:active {
+  background: darkblue;
+}
+.numeric-input input {
+  background: white;
+  border-radius: .25rem;
+  border: thin solid silver;
+  color: black;
+  font-size: 125%;
+  line-height: 1.5;
+  margin: 0 .25em;
+  padding: 0 .25em;
+  text-align: center;
+  width: 5em;
+}
+/* Hide WebKit's arrow buttons: https://stackoverflow.com/a/4298216 */
+.numeric-input input::-webkit-outer-spin-button,
+.numeric-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

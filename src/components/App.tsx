@@ -1,7 +1,13 @@
 import * as React from "react";
 
-export default (props: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className="app" {...props}>
+import NumericInput from "./NumericInput";
+
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  numericInputValue?: number;
+}
+
+export default ({ numericInputValue, ...rest }: Props) => (
+  <div className="app" {...rest}>
     <header role="banner">
       <h1>
         Hapi <abbr title="Server Side Render">SSR</abbr> React Example
@@ -15,6 +21,9 @@ export default (props: React.HTMLAttributes<HTMLDivElement>) => (
         </a>{" "}
         to render a webpage.
       </p>
+      <form>
+        <NumericInput value={numericInputValue} />
+      </form>
     </main>
     <footer role="contentinfo">
       <small>

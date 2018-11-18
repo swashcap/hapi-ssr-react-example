@@ -60,7 +60,9 @@ const getServer = async () => {
 
       combinedStream.append(toStream(RESPONSE_BEGINNING));
       combinedStream.append(
-        ReactDOMServer.renderToNodeStream(React.createElement(App))
+        ReactDOMServer.renderToNodeStream(
+          React.createElement(App, { numericInputValue: 2 })
+        )
       );
       combinedStream.append(toStream(RESPONSE_ENDING));
 
