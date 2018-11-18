@@ -2,6 +2,8 @@
 
 An example server with [Hapi](https://hapijs.com/) and [React server-side rendering](https://reactjs.org/docs/react-dom-server.html) with [React client-side hydration](https://reactjs.org/docs/react-dom.html#hydrate).
 
+![Demo of app](./images/demo.gif)
+
 ## Running
 
 1. Install dependencies: `npm install`
