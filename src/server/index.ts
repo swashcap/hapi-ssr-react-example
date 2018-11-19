@@ -4,9 +4,13 @@ import path from "path";
 import CombinedStream from "combined-stream2";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
+import { performance } from "perf_hooks";
+import debug from "debug";
 
 import App from "../components/App";
 import { toStream } from "./utils";
+
+const debugLog = debug("hapissr");
 
 const port = process.env.PORT || 3000;
 
@@ -89,6 +93,7 @@ process.on("unhandledRejection", error => {
 if (require.main === module) {
   getServer().then(async server => {
     await server.start();
+    debugLog(performance.now());
     server.log(`Server running at ${server.info.uri}`);
   });
 }
